@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Lachitha/JWT-AUTH-APP.git'
+                git branch: 'main', url: 'https://github.com/Nethum21/Cl-CD-Pipeline-for-Node.js-Apllication_Jenkins_EKS.git'
             }
         }
         stage('Install Dependencies') {
@@ -52,14 +52,14 @@ pipeline {
         }
         stage('Trivy Image Scan') {
             steps {
-                sh "trivy image --format table -o image-report.html lachisenarath576259/frontendauthentication:latest"
+                sh "trivy image --format table -o image-report.html NethumDilchitha576259/frontendauthentication:latest"
             }
         }
         stage('Docker Push Image') {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                        sh "docker push lachisenarath576259/frontendauthentication:latest"
+                        sh "docker push NethumDilchitha57625/frontendauthentication:latest"
                     }
                 }
             }
@@ -82,7 +82,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                        sh "docker run -d -p 443:443 lachisenarath576259/frontendauthentication:latest"
+                        sh "docker run -d -p 443:443 NethumDilchitha57625/frontendauthentication:latest"
                     }
                 }
             }
