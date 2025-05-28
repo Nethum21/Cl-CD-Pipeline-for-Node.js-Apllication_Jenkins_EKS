@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Lachitha/JWT-AUTH-APP.git'
+                git branch: 'main', url: 'https://github.com/Nethum21/Cl-CD-Pipeline-for-Node.js-Apllication_Jenkins_EKS.git'
             }
         }
         stage('Install Dependencies') {
@@ -50,7 +50,7 @@ pipeline {
                 dir('backend') {
                     script {
                         withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                            sh "docker build -t lachisenarath576259/authentication1:latest ."
+                            sh "docker build -t NethumDilchitha576259/authentication1:latest ."
                         }
                     }
                 }
@@ -58,14 +58,14 @@ pipeline {
         }
         stage('Trivy Image Scan') {
             steps {
-                sh "trivy image --format table -o image-report.html lachisenarath576259/authentication1:latest"
+                sh "trivy image --format table -o image-report.html NethumDilchitha576259/authentication1:latest"
             }
         }
         stage('Docker Push Image') {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                        sh "docker push lachisenarath576259/authentication1:latest"
+                        sh "docker push NethumDilchitha576259/authentication1:latest"
                     }
                 }
             }
@@ -88,7 +88,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                        sh "docker run -d -p 85:85 lachisenarath576259/authentication1:latest"
+                        sh "docker run -d -p 85:85 NethumDilchitha576259/authentication1:latest"
                     }
                 }
             }
